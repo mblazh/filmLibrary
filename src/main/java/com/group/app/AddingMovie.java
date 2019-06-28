@@ -16,48 +16,97 @@ import java.time.format.DateTimeFormatter;
 
 public class AddingMovie{
 
-    public static Movie display(){
+    Stage AddingMovieStage;
 
-        Stage AddingMovieStage = new Stage();
+    Text directorLabel;
+    Text runtimeLabel;
+    Text genreLabel ;
+    Text titleLabel;
+    Text preimieredateLabel;
+    Text MovieFileLabel;
+    Text CoverFileLabel;
+    Text AboutMovieLabel;
+    Text SelectedFileText;
+    Text SelectedCoverText;
+    TextField titleText;
 
-        Text directorLabel = new Text("Directed By:");
-        Text runtimeLabel = new Text("Runtime (min):");
-        Text genreLabel = new Text("Genre:");
-        Text titleLabel = new Text("Title:");
-        Label FilePathLabel = new Label("");
-        final Label CoverPathLabel = new Label("");
-        Text preimieredateLabel = new Text("Premiere Date:");
-        Text MovieFileLabel = new Text("Movie File:");
-        Text CoverFileLabel = new Text("Movie Cover:");
-        Text AboutMovieLabel = new Text("About a movie:");
+    Label FilePathLabel;
+    Label CoverPathLabel;
 
-        TextArea AboutMovieArea = new TextArea();
-        Text SelectedFileText = new Text("Selected File: ");
-        Text SelectedCoverText = new Text("Selected Cover: ");
-        TextField titleText = new TextField();
-        TextField directorText = new TextField();
+    TextArea AboutMovieArea;
 
-        SpinnerValueFactory<Integer> valueFactory =
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 300, 0);
-        Spinner<Integer> MovieRuntimeSpinner = new Spinner<Integer>();
+    TextField directorText;
 
-        Button addfile = new Button("Add file");
-        Button addCover = new Button("Add cover");
-        Button addbutton = new Button("Finish");
+    SpinnerValueFactory <Integer> valueFactory;
+    Spinner<Integer> MovieRuntimeSpinner;
 
-        DatePicker premieredate = new DatePicker();
+    Button addfile;
+    Button addCover;
+    Button addbutton;
+
+    DatePicker premieredate;
+
+    FileChooser MoviefileChooser;
+    FileChooser CoverfileChooser;
+
+    ChoiceBox GenreBox;
+
+    GridPane gridPane;
+
+    Scene scene;
 
 
-        FileChooser MoviefileChooser = new FileChooser();
-        FileChooser CoverfileChooser = new FileChooser();
+    AddingMovie(){
 
-        ChoiceBox GenreBox = new ChoiceBox();
+        this.AddingMovieStage = new Stage();
 
-        GridPane gridPane = new GridPane();
+        this.directorLabel = new Text("Directed By:");
+        this.runtimeLabel = new Text("Runtime (min):");
+        this.genreLabel = new Text("Genre:");
+        this.titleLabel = new Text("Title:");
+        this.FilePathLabel = new Label("");
+        this.CoverPathLabel = new Label("");
+        this.preimieredateLabel = new Text("Premiere Date:");
+        this.MovieFileLabel = new Text("Movie File:");
+        this.CoverFileLabel = new Text("Movie Cover:");
+        this.AboutMovieLabel = new Text("About a movie:");
 
-        Scene scene = new Scene(gridPane);
+        this.AboutMovieArea = new TextArea();
+        this.SelectedFileText = new Text("Selected File: ");
+        this.SelectedCoverText = new Text("Selected Cover: ");
+        this. titleText = new TextField();
+        this. directorText = new TextField();
 
-        addfile.setOnAction(new EventHandler<ActionEvent>(){
+        this.valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 300, 0);
+        this.MovieRuntimeSpinner = new Spinner<Integer>();
+
+        this.addfile = new Button("Add file");
+        this.addCover = new Button("Add cover");
+        this.addbutton = new Button("Finish");
+
+        this.premieredate = new DatePicker();
+
+
+        this.MoviefileChooser = new FileChooser();
+        this.CoverfileChooser = new FileChooser();
+
+        this.GenreBox = new ChoiceBox();
+
+        this.gridPane = new GridPane();
+
+        this.scene = new Scene(gridPane);
+
+        this.set_buttons_on_action();
+        this.set_panel();
+
+        this.AddingMovieStage.showAndWait();
+
+    }
+
+    private void set_buttons_on_action(){
+
+
+        this.addfile.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(final ActionEvent e) {
                 File file =   MoviefileChooser.showOpenDialog(AddingMovieStage);
@@ -84,10 +133,16 @@ public class AddingMovie{
                         premieredate.getValue() != null &&
                         FilePathLabel.getText() != "" && CoverPathLabel.getText() != "" &&
                         !(AboutMovieArea.getText().trim().isEmpty())
-                )  { AddingMovieStage.close(); }
+                )
+                { AddingMovieStage.close();
+
+                }
 
             }});
 
+    }
+
+    private void  set_panel(){
 
         MovieRuntimeSpinner.setValueFactory(valueFactory);
         MovieRuntimeSpinner.setEditable(true);
@@ -119,19 +174,15 @@ public class AddingMovie{
         gridPane.add(SelectedFileText,0,6);
         gridPane.add(FilePathLabel,1,6);
 
-
-
         gridPane.add(CoverFileLabel,0,7);
         gridPane.add(addCover,1,7);
         gridPane.add(SelectedCoverText,0,8);
         gridPane.add(CoverPathLabel,1,8);
 
-
-
         gridPane.add(AboutMovieLabel,0,9);
         gridPane.add(AboutMovieArea,1,10);
 
-        gridPane.add(addbutton, 2, 20);
+        gridPane.add(addbutton, 1, 20);
 
 
 
@@ -152,7 +203,15 @@ public class AddingMovie{
         AddingMovieStage.setTitle("Adding movie");
         AddingMovieStage.setScene(scene);
         AddingMovieStage.setResizable(false);
-        AddingMovieStage.showAndWait();
+
+    }
+
+
+
+
+    public Movie return_Movie(){
+
+
 
         String Title = titleText.getText();
         String Director = directorText.getText();
@@ -162,8 +221,6 @@ public class AddingMovie{
         String FilePath = FilePathLabel.getText();
         String CoverPath = CoverPathLabel.getText();
         String Description = AboutMovieArea.getText();
-
-
 
 
         Movie AddedMovie = new Movie(Title,Director,Genre,Runtime,PremiereDate,FilePath,Description,CoverPath);

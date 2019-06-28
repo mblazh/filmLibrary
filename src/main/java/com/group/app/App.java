@@ -34,10 +34,11 @@ public class App extends Application {
 					@Override
 					public void handle(final ActionEvent e) {
 
-						Movie a =  AddingMovie.display();
-						listaFilmow.add(a);
 
-						// a.show_details();
+						AddingMovie addingMovie = new AddingMovie();
+						Movie movie = addingMovie.return_Movie();
+
+						listaFilmow.add(movie);
 
 					}} );
 
