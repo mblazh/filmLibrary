@@ -18,8 +18,11 @@ public class MainWindow {
 		Button addEntryButton = new Button("Add Entry");
 		TextField searchField = new TextField();
 		Button searchButton = new Button("Search");
+		Label orderLabel = new Label("Order:");
+		ComboBox orderOptions = new ComboBox(FXCollections.observableArrayList("A->Z", "Z->A"));
+		orderOptions.getSelectionModel().selectFirst();
 
-		topMenu.getChildren().addAll(addEntryButton, searchField, searchButton);
+		topMenu.getChildren().addAll(addEntryButton, searchField, searchButton, orderLabel, orderOptions);
 		topMenu.setSpacing(10);
 
 		return topMenu;
