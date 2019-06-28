@@ -7,6 +7,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import javafx.event.*;
 
 public class MainWindow {
 	private Stage stage = new Stage();
@@ -14,7 +15,16 @@ public class MainWindow {
 	private HBox createTopMenu() {
 		HBox topMenu = new HBox();
 		
-		Button addEntryButton = new Button("Add Entry");
+		Button addEntryButton = new Button("Add movie");
+
+		addEntryButton.setOnAction(
+			new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(final ActionEvent e) {
+					new AddingMovieStage();
+				}} 
+		);
+
 		TextField searchField = new TextField();
 		Button searchButton = new Button("Search");
 		Label orderLabel = new Label("Order:");
