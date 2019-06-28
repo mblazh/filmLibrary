@@ -1,6 +1,8 @@
 package com.group.app;
 
 import javafx.scene.Scene;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -8,7 +10,7 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 public class MainWindow {
-	Stage stage;
+	private Stage stage = new Stage();
 
 	private HBox createTopMenu() {
 		HBox topMenu = new HBox();
@@ -23,13 +25,13 @@ public class MainWindow {
 		return topMenu;
 	}
 
-	private VBox createEntryList() {
-		VBox entryList = new VBox();
+	private ListView createEntryList() {
+		ListView<String> list = new ListView<String>();
 		
-		entryList.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-		entryList.setPrefWidth(250);
+		ObservableList<String> items = FXCollections.observableArrayList ("Lorem Ipsum", "Dolor Sit Amet", "Consectetur", "Adipiscing Elit");
+		list.setItems(items);
 
-		return entryList;
+		return list;
 	}
 
 	private WebView createBrowser() {
@@ -40,7 +42,6 @@ public class MainWindow {
 	}
 	
 	public MainWindow() {
-		this.stage = new Stage();
 		this.stage.setTitle("Film Library");
 
 		BorderPane borderPane = new BorderPane();
