@@ -11,27 +11,21 @@ import javafx.event.*;
 
 public class MainWindow {
 	private Stage stage = new Stage();
+	Button addEntryButton = new Button("Add Мovie");
+
+	public void setAddMovieButtonHandler(EventHandler<ActionEvent> handler){
+		this.addEntryButton.setOnAction(handler);
+	}
 
 	private HBox createTopMenu() {
 		HBox topMenu = new HBox();
-		
-		Button addEntryButton = new Button("Add movie");
-
-		addEntryButton.setOnAction(
-			new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(final ActionEvent e) {
-					new AddingMovieStage();
-				}} 
-		);
-
 		TextField searchField = new TextField();
 		Button searchButton = new Button("Search");
 		Label orderLabel = new Label("Order:");
 		ComboBox orderOptions = new ComboBox(FXCollections.observableArrayList("A->Z", "Z->A"));
 		orderOptions.getSelectionModel().selectFirst();
 
-		topMenu.getChildren().addAll(addEntryButton, searchField, searchButton, orderLabel, orderOptions);
+		topMenu.getChildren().addAll(this.addEntryButton, searchField, searchButton, orderLabel, orderOptions);
 		topMenu.setSpacing(10);
 
 		return topMenu;
@@ -45,7 +39,6 @@ public class MainWindow {
 
 		return list;
 	}
-
 	
 	public MainWindow() {
 		this.stage.setTitle("Film Library");
