@@ -1,16 +1,16 @@
 package com.group.app;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Iterator;
 import javafx.scene.control.ListView;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class Model{
 	private List<Movie> movieList = new ArrayList<Movie>();
 
 	public ListView<String> getTitlesList(){
 		ListView<String> l = new ListView<String>();
-
 		Iterator<Movie> moviesIterator = this.movieList.iterator();
 
 		while(moviesIterator.hasNext()) {

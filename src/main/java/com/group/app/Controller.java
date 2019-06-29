@@ -1,8 +1,7 @@
 package com.group.app;
 
-import javafx.event.*;
-import java.util.ArrayList;
-import java.util.List;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 public class Controller{
 	private Model model;
@@ -15,8 +14,20 @@ public class Controller{
 			Movie movie = addingMovie.return_Movie();
 
 			model.getMovieList().add(movie);
-
 			view.getMainWindow().updateMoviesList(model.getTitlesList());
+		}
+	}
+
+	public class SearchMovieButtonHandler implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent event) {
+			String searchText = view.getMainWindow().searchField.getText();
+			for (Movie movie: model.getMovieList()) {
+				if(movie.MovieTitle.equalsIgnoreCase(searchText)) {
+					 view.getMainWindow().borderPane.setCenter(new MovieDetails(movie));
+				}
+			}
 		}
 	}
 
@@ -25,5 +36,6 @@ public class Controller{
 		this.view = view;
 
 		this.view.getMainWindow().setAddMovieButtonHandler(new AddMovieButtonHandler());
+		this.view.getMainWindow().setSearchMovieButtonHandler(new SearchMovieButtonHandler());
 	}
 }

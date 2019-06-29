@@ -1,7 +1,5 @@
 package com.group.app;
 
-import java.util.Date;
-
 public class Movie {
 
     String MovieTitle;

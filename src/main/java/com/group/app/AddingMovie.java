@@ -10,8 +10,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
 import java.io.File;
-import java.lang.String;
 import java.time.format.DateTimeFormatter;
 
 public class AddingMovie{
@@ -125,7 +125,7 @@ public class AddingMovie{
         addbutton.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(final ActionEvent e) {
-
+                
                 if (titleText.getText() != null && !(titleText.getText().trim().isEmpty()) &&
                         directorText.getText() != null && !(directorText.getText().trim().isEmpty()) &&
                         !(GenreBox.getSelectionModel().isEmpty()) &&
@@ -136,6 +136,12 @@ public class AddingMovie{
                 )
                 { AddingMovieStage.close();
 
+                }
+                else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("");
+                    alert.setContentText("Wrong data");
+                    alert.showAndWait();
                 }
 
             }});
@@ -222,12 +228,7 @@ public class AddingMovie{
         String CoverPath = CoverPathLabel.getText();
         String Description = AboutMovieArea.getText();
 
-
-        Movie AddedMovie = new Movie(Title,Director,Genre,Runtime,PremiereDate,FilePath,Description,CoverPath);
-
-
-
-        return AddedMovie;
+        return new Movie(Title,Director,Genre,Runtime,PremiereDate,FilePath,Description,CoverPath);
 
     }
 
