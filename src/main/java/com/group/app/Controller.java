@@ -15,6 +15,8 @@ public class Controller{
 			Movie movie = addingMovie.return_Movie();
 
 			model.getMovieList().add(movie);
+
+			view.getMainWindow().updateMoviesList(model.getTitlesList());
 		}
 	}
 

@@ -12,6 +12,7 @@ import javafx.event.*;
 public class MainWindow {
 	private Stage stage = new Stage();
 	Button addEntryButton = new Button("Add Мovie");
+	ListView<String> list = new ListView<String>();
 
 	public void setAddMovieButtonHandler(EventHandler<ActionEvent> handler){
 		this.addEntryButton.setOnAction(handler);
@@ -31,13 +32,8 @@ public class MainWindow {
 		return topMenu;
 	}
 
-	private ListView createEntryList() {
-		ListView<String> list = new ListView<String>();
-		
-		ObservableList<String> items = FXCollections.observableArrayList ("Lorem Ipsum", "Dolor Sit Amet", "Consectetur", "Adipiscing Elit");
-		list.setItems(items);
-
-		return list;
+	public void updateMoviesList(ListView<String> l) {
+		this.list.setItems(l.getItems());
 	}
 	
 	public MainWindow() {
@@ -45,7 +41,7 @@ public class MainWindow {
 
 		BorderPane borderPane = new BorderPane();
 		borderPane.setTop(this.createTopMenu());
-		borderPane.setLeft(this.createEntryList());
+		borderPane.setLeft(this.list);
 		// borderPane.setCenter(); // Add here full movie information widget
 
 		Scene scene = new Scene(borderPane, 1000, 800);
