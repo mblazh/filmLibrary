@@ -203,7 +203,7 @@ public class AddingMovie{
         SelectedCoverText.setStyle("-fx-font: normal bold 15px 'serif' ");
         CoverFileLabel.setStyle("-fx-font: normal bold 15px 'serif' ");
 
-        gridPane.setStyle("-fx-background-color: BEIGE;");
+        gridPane.setStyle("-fx-background-color:FLORALWHITE;");
 
 
         AddingMovieStage.setTitle("Adding movie");
@@ -211,8 +211,6 @@ public class AddingMovie{
         AddingMovieStage.setResizable(false);
 
     }
-
-
 
 
     public Movie return_Movie(){
