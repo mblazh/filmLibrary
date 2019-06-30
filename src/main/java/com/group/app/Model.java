@@ -9,7 +9,7 @@ import java.util.List;
 public class Model{
 	private List<Movie> movieList = new ArrayList<Movie>();
 
-	public ListView<String> getTitlesList(){
+	public ListView<String> getTitlesList(String order){
 		ListView<String> l = new ListView<String>();
 		Iterator<Movie> moviesIterator = this.movieList.iterator();
 

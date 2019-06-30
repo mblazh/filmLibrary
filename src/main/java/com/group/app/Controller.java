@@ -6,10 +6,13 @@ import javafx.event.EventHandler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import javafx.scene.control.ListView;
 
-
 public class Controller{
+	private String order;
 
 	private Model model;
 	private View view;
@@ -23,7 +26,7 @@ public class Controller{
 			Movie movie = addingMovie.return_Movie();
 
 			model.getMovieList().add(movie);
-			view.getMainWindow().updateMoviesList(model.getTitlesList());
+			view.getMainWindow().updateMoviesList(model.getTitlesList(order));
 		}
 	}
 
@@ -60,6 +63,13 @@ public class Controller{
 		}
 	}
 
+	public class OrderSelectorHandler implements EventHandler<ActionEvent> {
+		@Override
+		public void handle(ActionEvent event) {
+			order = (String) view.getMainWindow().getOrderSelector().getValue();
+		}
+	}
+
 
 	private void CheckTitleFromList(){
 
@@ -87,17 +97,18 @@ public class Controller{
 
 	}
 
-
-
-
-
 	public Controller(Model model, View view){
 		this.model = model;
 		this.view = view;
 
+		this.view.getMainWindow().setOrderSelectorOtions(FXCollections.observableArrayList("A -> Z", "Z -> A"));
+		this.order = "A -> Z";
+
 		this.view.getMainWindow().setAddMovieButtonHandler(new AddMovieButtonHandler());
 		this.view.getMainWindow().setSearchMovieButtonHandler(new SearchMovieButtonHandler());
 		this.view.getMainWindow().setRemoveEntryButtonHandler(new RemoveMovieButtonHandler());
+		this.view.getMainWindow().setOrderSelectorHandler(new OrderSelectorHandler());
+
 		this.CheckTitleFromList();
 	}
 }

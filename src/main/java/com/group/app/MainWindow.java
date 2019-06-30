@@ -18,6 +18,7 @@ public class MainWindow {
 	BorderPane borderPane;
 	ListView<String> list = new ListView<String>();
 	Button removeEntryButton = new Button("Remove Мovie");
+	ComboBox orderOptions = new ComboBox();
 
 	public void setAddMovieButtonHandler(EventHandler<ActionEvent> handler){
 		this.addEntryButton.setOnAction(handler);
@@ -26,13 +27,24 @@ public class MainWindow {
 
 	public void setRemoveEntryButtonHandler(EventHandler<ActionEvent> handler){this.removeEntryButton.setOnAction(handler);}
 
+	public void setOrderSelectorOtions(ObservableList<String> l){
+		this.orderOptions.setItems(l);
+		this.orderOptions.getSelectionModel().selectFirst();
+	}
+
+	public ComboBox getOrderSelector(){
+		return this.orderOptions;
+	}
+
+	public void setOrderSelectorHandler(EventHandler<ActionEvent> handler){
+		this.orderOptions.setOnAction(handler);
+	}
+
 	private HBox createTopMenu() {
 		HBox topMenu = new HBox();
 		Label orderLabel = new Label("Order:");
-		ComboBox orderOptions = new ComboBox(FXCollections.observableArrayList("A->Z", "Z->A"));
-		orderOptions.getSelectionModel().selectFirst();
 
-		topMenu.getChildren().addAll(this.addEntryButton,removeEntryButton, searchField, searchButton, orderLabel, orderOptions);
+		topMenu.getChildren().addAll(this.addEntryButton,removeEntryButton, searchField, searchButton, orderLabel, this.orderOptions);
 		topMenu.setSpacing(10);
 
 		return topMenu;
