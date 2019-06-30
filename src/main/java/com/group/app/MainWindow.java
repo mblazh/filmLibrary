@@ -10,6 +10,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class MainWindow {
 	private Stage stage = new Stage();
 	Button addEntryButton = new Button("Add Мovie");

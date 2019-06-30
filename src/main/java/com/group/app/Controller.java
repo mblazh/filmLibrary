@@ -67,6 +67,7 @@ public class Controller{
 		@Override
 		public void handle(ActionEvent event) {
 			order = (String) view.getMainWindow().getOrderSelector().getValue();
+			view.getMainWindow().updateMoviesList(model.getTitlesList(order));
 		}
 	}
 
