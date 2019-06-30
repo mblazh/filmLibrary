@@ -10,10 +10,11 @@ import javafx.scene.control.ListView;
 
 
 public class Controller{
+
 	private Model model;
 	private View view;
 
-	private String MovieTitleToRemove;
+	private String MovieTitle;
 
 	public class AddMovieButtonHandler implements EventHandler<ActionEvent> {
 		@Override
@@ -46,7 +47,7 @@ public class Controller{
 
 			for (Movie movie: model.getMovieList()) {
 
-				if(movie.MovieTitle.equals(MovieTitleToRemove)) {
+				if(movie.MovieTitle.equals(MovieTitle)) {
 
 					model.getMovieList().remove(movie);
 					break;
@@ -54,7 +55,7 @@ public class Controller{
 				}
 			}
 
-			((ListView<String>)view.getMainWindow().borderPane.getLeft()).getItems().remove(MovieTitleToRemove);
+			((ListView<String>)view.getMainWindow().borderPane.getLeft()).getItems().remove(MovieTitle);
 
 		}
 	}
@@ -67,12 +68,27 @@ public class Controller{
 			@Override
 			public void changed(ObservableValue<? extends String> observableValue, String previous, String current) {
 
-				MovieTitleToRemove = current;
+				MovieTitle = current;
+
+				for (Movie movie: model.getMovieList()) {
+
+					if(movie.MovieTitle.equals(MovieTitle)) {
+
+						view.getMainWindow().borderPane.setCenter(new MovieDetails(movie));
+						break;
+
+					}
+				}
 
 			}
 		});
 
+
+
 	}
+
+
+
 
 
 	public Controller(Model model, View view){
