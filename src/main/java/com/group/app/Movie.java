@@ -1,6 +1,8 @@
 package com.group.app;
 
-public class Movie {
+import java.io.Serializable;
+
+public class Movie implements Serializable {
 
     String MovieTitle;
     String MovieDirector;
@@ -10,9 +12,6 @@ public class Movie {
     String MoviePath;
     String MovieDescription;
     String MovieCover;
-
-
-
 
 
     Movie(String MovieTitle,String MovieDirector,String MovieGenre,int MovieRuntime,
@@ -38,7 +37,17 @@ public class Movie {
         System.out.println(this.MovieDescription);
         System.out.println(this.MovieCover);
 
-
-
     }
+
+
+    @Override
+    public String toString() {
+        return new StringBuffer(" MovieTitle: ").append(this.MovieTitle)
+                .append(" MovieGenre: ").append(this.MovieGenre).append(" MovieDirector: ").append(this.MovieDirector)
+                .append(" MovieRuntime: ").append(this.MovieRuntime ).append(" MoviePremiereDate: ").append(this.MoviePremiereDate)
+                .append(" MoviePath: ").append(this.MoviePath ).append(" MovieDescription: ").append(this.MovieDescription)
+                .append(" MovieDescription: ").append(this.MovieCover).toString();
+    }
+
+
 }

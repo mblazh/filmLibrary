@@ -58,7 +58,7 @@ public class Controller{
 				}
 			}
 
-			((ListView<String>)view.getMainWindow().borderPane.getLeft()).getItems().remove(MovieTitle);
+			view.getMainWindow().updateMoviesList(model.getTitlesList(order));
 
 		}
 	}
