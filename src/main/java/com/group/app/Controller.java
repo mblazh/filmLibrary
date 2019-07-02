@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import javafx.scene.control.ListView;
+import javafx.scene.layout.GridPane;
 
 public class Controller{
 	private String order;
@@ -59,6 +60,8 @@ public class Controller{
 			}
 
 			view.getMainWindow().updateMoviesList(model.getTitlesList(order));
+			view.getMainWindow().borderPane.setCenter(new GridPane());
+
 
 		}
 	}

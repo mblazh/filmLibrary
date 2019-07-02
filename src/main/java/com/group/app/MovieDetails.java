@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 
 public class MovieDetails extends GridPane {
 
@@ -67,9 +68,15 @@ public class MovieDetails extends GridPane {
 
     private void playMovie()
     {
-        try {
-            Desktop.getDesktop().open(new File(movie.MoviePath));
+        if( Desktop.isDesktopSupported() )
+        {
+            new Thread(() -> {
+                try {
+                    Desktop.getDesktop().open(new File(movie.MoviePath));
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }).start();
         }
-        catch(Exception e1) {}
     }
 }

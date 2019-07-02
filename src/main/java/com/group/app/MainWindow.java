@@ -60,14 +60,14 @@ public class MainWindow {
 		HBox topMenu = new HBox();
 		GridPane OrderPane = new GridPane();
 		Label orderLabel = new Label("Order:");
-		orderLabel.setFont(new Font("Arial",20));
+		orderLabel.setFont(new Font("Arial",25));
 
 		OrderPane.setAlignment(Pos.TOP_CENTER);
 		OrderPane.add(orderLabel,0,0);
 		OrderPane.add(this.orderOptions,0,1);
 
 		topMenu.getChildren().addAll(this.addEntryButton,removeEntryButton, searchField,searchButton, OrderPane);
-		topMenu.setSpacing(10);
+		topMenu.setSpacing(20);
 
 		return topMenu;
 	}
@@ -92,6 +92,8 @@ public class MainWindow {
 		this.searchField.setFont(new Font("Arial",20));
 		this.searchButton.setMinSize(10,10);
 
+		this.orderOptions.setStyle("-fx-text-fill: #191970;  -fx-border-color: #000000; -fx-border-width: 4px; -fx-font-size: 20;");
+
 
 		this.searchButton.setStyle("-fx-text-fill: #191970;  -fx-border-color: #000000; -fx-border-width: 4px; -fx-font-size: 13;");
 
@@ -101,7 +103,7 @@ public class MainWindow {
 		borderPane.setTop(this.createTopMenu());
 		borderPane.setLeft(this.list);
 
-		Scene scene = new Scene(borderPane, 1000, 800);
+		Scene scene = new Scene(borderPane, 1100, 800);
 		this.stage.setScene(scene);
 
 		borderPane.setStyle("-fx-background-color:FLORALWHITE;");
