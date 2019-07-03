@@ -39,6 +39,8 @@ public class Movie implements Serializable {
 
     }
 
+    public static boolean movie() {return true;}
+
 
     @Override
     public String toString() {

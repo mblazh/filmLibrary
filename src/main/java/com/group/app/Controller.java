@@ -43,7 +43,7 @@ public class Controller{
 			}
 		}
 	}
-
+	public static boolean ifmovie() {return true;}
 	public class RemoveMovieButtonHandler implements EventHandler<ActionEvent> {
 
 		@Override

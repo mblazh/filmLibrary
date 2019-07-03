@@ -211,7 +211,7 @@ public class AddingMovie{
         AddingMovieStage.setResizable(false);
 
     }
-
+    public static boolean add(){return true;}
 
     public Movie return_Movie(){
 

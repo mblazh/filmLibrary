@@ -12,7 +12,7 @@ public class App extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-
+	public static boolean status() {return true;}
 	@Override
 	public void start(Stage primaryStage) {
 

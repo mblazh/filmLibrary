@@ -9,12 +9,25 @@ import org.junit.Test;
  */
 public class AppTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
+    public void testAdd() {
+        assertTrue(AddingMovie.add());
     }
+    @Test
+    public void testDetail() {
+        assertTrue(MovieDetails.detail());
+    }
+    @Test
+    public void testMovie() {
+        assertTrue(Movie.movie());
+    }
+    @Test
+    public void testApp() {
+        assertTrue(App.status());
+    }
+    @Test
+    public void testController() {
+        assertTrue(Controller.ifmovie());
+    }
+
 }

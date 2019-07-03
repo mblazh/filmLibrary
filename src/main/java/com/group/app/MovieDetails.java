@@ -65,6 +65,7 @@ public class MovieDetails extends GridPane {
             }
         });
     }
+    public static boolean detail() {return true;}
 
     private void playMovie()
     {
