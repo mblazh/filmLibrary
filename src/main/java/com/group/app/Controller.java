@@ -12,6 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 
+import java.lang.NullPointerException;
+
 public class Controller{
 	private String order;
 
@@ -24,7 +26,13 @@ public class Controller{
 		@Override
 		public void handle(ActionEvent event) {
 			AddingMovie addingMovie = new AddingMovie();
-			Movie movie = addingMovie.return_Movie();
+			Movie movie;
+
+			try{
+				movie = addingMovie.return_Movie();
+			} catch (NullPointerException e){
+				return;
+			}
 
 			model.getMovieList().add(movie);
 			view.getMainWindow().updateMoviesList(model.getTitlesList(order));
